@@ -107,8 +107,11 @@ export async function saveToObsidian(
 
 	const isDailyNote = behavior === 'append-daily' || behavior === 'prepend-daily';
 
+	const scheme = generalSettings.uriScheme || 'obsidian';
+	const fileParam = scheme === 'noted' ? 'name' : 'file';
+
 	if (isDailyNote) {
-		obsidianUrl = `obsidian://daily?`;
+		obsidianUrl = `${scheme}://daily?`;
 	} else {
 		// Ensure path ends with a slash
 		if (path && !path.endsWith('/')) {
@@ -116,7 +119,7 @@ export async function saveToObsidian(
 		}
 
 		const formattedNoteName = sanitizeFileName(noteName);
-		obsidianUrl = `obsidian://new?file=${encodeURIComponent(path + formattedNoteName)}`;
+		obsidianUrl = `${scheme}://new?${fileParam}=${encodeURIComponent(path + formattedNoteName)}`;
 	}
 
 	if (behavior.startsWith('append')) {

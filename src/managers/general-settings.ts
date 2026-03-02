@@ -216,6 +216,7 @@ export function initializeGeneralSettings(): void {
 		initializeBetaFeaturesToggle();
 		initializeLegacyModeToggle();
 		initializeSilentOpenToggle();
+		initializeUriSchemeDropdown();
 		initializeVaultInput();
 		initializeOpenBehaviorDropdown();
 		initializeKeyboardShortcuts();
@@ -257,8 +258,11 @@ function saveSettingsFromForm(): void {
 	const alwaysShowHighlightsToggle = document.getElementById('highlighter-visibility') as HTMLInputElement;
 	const highlightBehaviorSelect = document.getElementById('highlighter-behavior') as HTMLSelectElement;
 
+	const uriSchemeDropdown = document.getElementById('uri-scheme-dropdown') as HTMLSelectElement;
+
 	const updatedSettings = {
 		...generalSettings, // Keep existing settings
+		uriScheme: (uriSchemeDropdown?.value as 'obsidian' | 'noted') ?? generalSettings.uriScheme,
 		openBehavior: (openBehaviorDropdown?.value as 'popup' | 'embedded') ?? generalSettings.openBehavior,
 		showMoreActionsButton: showMoreActionsToggle?.checked ?? generalSettings.showMoreActionsButton,
 		betaFeatures: betaFeaturesToggle?.checked ?? generalSettings.betaFeatures,
@@ -342,6 +346,16 @@ function initializeSilentOpenToggle(): void {
 	initializeSettingToggle('silent-open-toggle', generalSettings.silentOpen, (checked) => {
 		saveSettings({ ...generalSettings, silentOpen: checked });
 	});
+}
+
+function initializeUriSchemeDropdown(): void {
+	initializeSettingDropdown(
+		'uri-scheme-dropdown',
+		generalSettings.uriScheme,
+		(value) => {
+			saveSettings({ ...generalSettings, uriScheme: value as 'obsidian' | 'noted' });
+		}
+	);
 }
 
 function initializeOpenBehaviorDropdown(): void {
