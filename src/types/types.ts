@@ -66,7 +66,7 @@ export interface Settings {
 	betaFeatures: boolean;
 	legacyMode: boolean;
 	silentOpen: boolean;
-	uriScheme: 'obsidian' | 'noted';
+	uriScheme: 'obsidian' | 'kokobrain';
 	openBehavior: 'popup' | 'embedded';
 	highlighterEnabled: boolean;
 	alwaysShowHighlights: boolean;

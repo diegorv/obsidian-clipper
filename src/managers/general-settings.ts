@@ -262,7 +262,7 @@ function saveSettingsFromForm(): void {
 
 	const updatedSettings = {
 		...generalSettings, // Keep existing settings
-		uriScheme: (uriSchemeDropdown?.value as 'obsidian' | 'noted') ?? generalSettings.uriScheme,
+		uriScheme: (uriSchemeDropdown?.value as 'obsidian' | 'kokobrain') ?? generalSettings.uriScheme,
 		openBehavior: (openBehaviorDropdown?.value as 'popup' | 'embedded') ?? generalSettings.openBehavior,
 		showMoreActionsButton: showMoreActionsToggle?.checked ?? generalSettings.showMoreActionsButton,
 		betaFeatures: betaFeaturesToggle?.checked ?? generalSettings.betaFeatures,
@@ -353,7 +353,7 @@ function initializeUriSchemeDropdown(): void {
 		'uri-scheme-dropdown',
 		generalSettings.uriScheme,
 		(value) => {
-			saveSettings({ ...generalSettings, uriScheme: value as 'obsidian' | 'noted' });
+			saveSettings({ ...generalSettings, uriScheme: value as 'obsidian' | 'kokobrain' });
 		}
 	);
 }

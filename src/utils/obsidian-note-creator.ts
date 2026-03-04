@@ -108,7 +108,7 @@ export async function saveToObsidian(
 	const isDailyNote = behavior === 'append-daily' || behavior === 'prepend-daily';
 
 	const scheme = generalSettings.uriScheme || 'obsidian';
-	const fileParam = scheme === 'noted' ? 'name' : 'file';
+	const fileParam = scheme === 'kokobrain' ? 'name' : 'file';
 
 	if (isDailyNote) {
 		obsidianUrl = `${scheme}://daily?`;
